@@ -1,0 +1,25 @@
+.logo-container .logo-infocard {background-color: #295f7a;}
+.kl-cta-ribbon {background-color: #28aae1;}
+.kl-cta-ribbon .trisvg path {fill: #28aae1;}
+.works_carousel.stl-simple .inner-slide:hover [data-role="title"] a, 
+.works_carousel.stl-simple .inner-slide [data-role="title"] a:hover {color: #28aae1!important;}
+.tcolor {color: #28aae1 !important;}
+.kl-iconbox__icon.small {max-width: 60px;}
+.kl-iconbox__icon.small-logo {max-width: 30px;}
+.btn-fullcolor, .btn-fullcolor:focus {background-color: #28aae1;}
+.btn-fullcolor:hover, 
+.btn-fullcolor.btn-skewed:hover:before, 
+.cart-container .buttons .button.wc-forward:hover {background-color: #378fa0;}
+
+@media (min-width: 992px) {
+	.main-nav > ul > li > a:before,
+	.main-nav ul .zn-mega-new-item {background-color: rgba(41,95,122,0.8);}
+}
+.chaser .main-menu li.active>a {background: #28aae1 !important;}
+
+.testimonial_slider.quoter-style .testimonialbox .who strong,
+.testimonialbox .who,
+.testimonialbox .tcontent {color: #fff;}
+.testimonial_slider.quoter-style .cfs--pagination a.selected {background-color: #28aae1;}
+.socialbox {background-color: #fff;}
+#footer {border-top: 0;}
