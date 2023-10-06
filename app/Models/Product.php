@@ -36,6 +36,6 @@ class Product extends Model
 
     public function carts()
     {
-        return $this->belongsToMany('App\Models\Cart','product_cart','product_id','cart_id');
+        return $this->belongsToMany(Cart::class);
     }
 }
