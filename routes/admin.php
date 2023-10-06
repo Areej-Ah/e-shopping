@@ -88,6 +88,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function() {
         Route::post('update/image/{pid}','ProductsController@update_product_image');
         Route::post('delete/product/image/{pid}','ProductsController@delete_main_image');
 
+        Route::resource('orders','OrdersController');
+        Route::delete('orders/destroy/all','OrdersController@multi_delete');
+
         Route::get('/', function () {
             return view('admin.home');
         });

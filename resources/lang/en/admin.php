@@ -290,6 +290,7 @@ return [
     'refused'                     => 'Refused',
     'refused_reason'              => 'Reason for Refused',
     'productphotos'               => 'Click here to upload photos',
+    'orders'                      => 'Order',
 
 
 

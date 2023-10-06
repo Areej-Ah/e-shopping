@@ -644,6 +644,33 @@
         </ul>
       </li>
 
+      <li class="nav-item has-treeview {{ active_menu('orders')[0] }} ">
+        <a href="#" class="nav-link ">
+          <i class="nav-icon fa fa-shopping-cart"></i>
+          <p>
+            {{ trans('admin.orders') }}
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style=" {{ active_menu('orders')[1] }} ">
+
+          <li class="nav-item">
+            <a href="{{aurl('orders')}}" class="nav-link">
+              <i class="fa fa-shopping-cart nav-icon"></i>
+              <p>{{ trans('admin.orders') }}</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{aurl('orders/create')}}" class="nav-link">
+              <i class="fa fa-plus nav-icon"></i>
+              <p>{{ trans('admin.add') }}</p>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
 
 
 
