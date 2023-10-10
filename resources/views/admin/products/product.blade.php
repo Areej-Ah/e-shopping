@@ -9,6 +9,43 @@
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
 
+        $(document).on('click','.copy_product',function(){
+
+        $.ajax({
+            url:"{{ aurl('products/copy/'.$product->id) }}",
+            dataType: 'json',
+            type:'post',
+            data: { _token:'{{ csrf_token() }}' },
+            beforeSend: function(){
+                $('.loading_copy').removeClass('hidden');
+                $('.validate_message').html('');
+                $('.error_message').addClass('hidden');
+                $('.success_message').html('').addClass('hidden');
+
+            }, success: function(data){
+                if(data.status == true){
+                    $('.loading_copy').addClass('hidden');
+                    $('.success_message').html('<h1>'+data.message+'</h1>').removeClass('hidden');
+                    setTimeout(function(){
+                        window.location.href = "{{ aurl('products') }}/"+data.id+'/edit';
+                    }, 5000);
+                }
+
+            }, error(response){
+                $('.loading_copy').addClass('hidden');
+                var error_li = '';
+                $.each(response.responseJSON.errors,function(index,value){
+                    error_li += '<li>'+value+'</li>';
+                });
+                $('.validate_message').html(error_li);
+                $('.error_message').removeClass('hidden');
+
+            }
+
+        });
+        return false;
+        });
+
         $(document).on('click','.save_and_continue',function(){
          var form_data = $('#product_form').serialize();
         $.ajax({
@@ -59,7 +96,8 @@
     <a href="" class="btn btn-primary save">{{trans('admin.save')}} <i class="fa fa-save"></i></a>
     <a href="" class="btn btn-success save_and_continue">{{trans('admin.save_and_continue')}} <i class="fa fa-save"></i>
     <i class="fa fa-spin fa-spinner loading_save_c hidden"></i></a>
-    <a href="" class="btn btn-info copy">{{trans('admin.copy')}} <i class="fa fa-copy"></i></a>
+    <a href="" class="btn btn-info copy_product">{{trans('admin.copy')}} <i class="fa fa-copy"></i>
+    <i class="fa fa-spin fa-spinner loading_copy hidden"></i></a>
     <a href="" class="btn btn-danger delete" data-toggle="modal" data-target="#delete{{ $product->id }}">{{trans('admin.delete')}} <i class="fa fa-trash"></i></a>
     <hr />
     <div class="alert alert-danger error_message hidden">
@@ -106,7 +144,8 @@
     <a href="" class="btn btn-primary save">{{trans('admin.save')}} <i class="fa fa-save"></i></a>
     <a href="" class="btn btn-success save_and_continue">{{trans('admin.save_and_continue')}} <i class="fa fa-save"></i>
     <i class="fa fa-spin fa-spinner loading_save_c hidden"></i></a>
-    <a href="" class="btn btn-info copy">{{trans('admin.copy')}} <i class="fa fa-copy"></i></a>
+    <a href="" class="btn btn-info copy_product">{{trans('admin.copy')}} <i class="fa fa-copy"></i>
+    <i class="fa fa-spin fa-spinner loading_copy hidden"></i></a>
     <a href="" class="btn btn-danger delete">{{trans('admin.delete')}} <i class="fa fa-trash"></i></a>
 
     {!! Form::close() !!}

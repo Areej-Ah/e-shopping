@@ -15,15 +15,9 @@ return new class extends Migration
             $table->increments('id');
             $table->bigInteger('quantity')->nullable();
             $table->decimal('cost',5,2)->nullable();
-            $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('cart_id')->unsigned();
             
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
 
             $table->foreign('product_id')
                   ->references('id')
