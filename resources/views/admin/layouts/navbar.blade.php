@@ -644,25 +644,26 @@
         </ul>
       </li>
 
-      <li class="nav-item has-treeview {{ active_menu('orders')[0] }} ">
+
+      <li class="nav-item has-treeview {{ active_menu('carts')[0] }} ">
         <a href="#" class="nav-link ">
           <i class="nav-icon fa fa-shopping-cart"></i>
           <p>
-            {{ trans('admin.orders') }}
+            {{ trans('admin.carts') }}
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview" style=" {{ active_menu('orders')[1] }} ">
+        <ul class="nav nav-treeview" style=" {{ active_menu('carts')[1] }} ">
 
           <li class="nav-item">
-            <a href="{{aurl('orders')}}" class="nav-link">
+            <a href="{{aurl('carts')}}" class="nav-link">
               <i class="fa fa-shopping-cart nav-icon"></i>
-              <p>{{ trans('admin.orders') }}</p>
+              <p>{{ trans('admin.carts') }}</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="{{aurl('orders/create')}}" class="nav-link">
+            <a href="{{aurl('carts/create')}}" class="nav-link">
               <i class="fa fa-plus nav-icon"></i>
               <p>{{ trans('admin.add') }}</p>
             </a>

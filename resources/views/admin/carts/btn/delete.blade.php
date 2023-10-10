@@ -10,9 +10,9 @@
           </button>
         </div>
 
-        {!! Form::open(['route'=>['orders.destroy',$id],'method'=>'delete']) !!}
+        {!! Form::open(['route'=>['carts.destroy',$id],'method'=>'delete']) !!}
             <div class="modal-body">
-            <p>{{ trans('admin.delete_item',['name'=> session('lang')=='ar'? $name_ar : $name_en ]) }}  </p>
+            <p>{{ trans('admin.delete_item',['name'=> $id ]) }}  </p>
             </div>
             <div class="modal-footer justify-content-between">
 

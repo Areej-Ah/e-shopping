@@ -83,13 +83,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function() {
 
         Route::resource('products','ProductsController');
         Route::delete('products/destroy/all','ProductsController@multi_delete');
+        Route::post('products/copy/{pid}','ProductsController@copy_product');
         Route::post('upload/image/{pid}','ProductsController@upload_file');
         Route::post('delete/image','ProductsController@delete_file');
         Route::post('update/image/{pid}','ProductsController@update_product_image');
         Route::post('delete/product/image/{pid}','ProductsController@delete_main_image');
 
-        Route::resource('orders','OrdersController');
-        Route::delete('orders/destroy/all','OrdersController@multi_delete');
+
+        Route::resource('carts','CartsController');
+        Route::delete('carts/destroy/all','CartsController@multi_delete');
 
         Route::get('/', function () {
             return view('admin.home');

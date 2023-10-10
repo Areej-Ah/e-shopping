@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use DB;
+use App\File as FileTbl;
 use Carbon\Carbon;
 use App\DataTables\ProductDatatable;
 
@@ -59,7 +60,7 @@ class ProductsController extends Controller
 
     public function store()
     {
-        $data = $this->validate(request(),
+       /* $data = $this->validate(request(),
         [
             'name_en' => 'required',
             'name_ar' => 'required',
@@ -92,7 +93,7 @@ class ProductsController extends Controller
 
         Product::create($data);
         session()->flash('success',trans('admin.record_added'));
-        return redirect(aurl('products'));
+        return redirect(aurl('products'));*/
 
 
     }
@@ -192,10 +193,66 @@ class ProductsController extends Controller
         return response(['status'=>true,'message'=>trans('admin.record_edited')],200);
     }
 
+    public function copy_product($id)
+    {
+        if(request()->ajax()){
+        $relation_data = Product::find($id);
+        $copy = Product::find($id)->toArray();
+        unset($copy['id']);
+        $create = Product::create($copy);
+        if(!empty($copy['photo'])){
+            $ext = \File::extension($copy['photo']);
+            $new_path = 'public/products/'.$create->id.'/'.\Str::random(30).'.'.$ext;
+            \Storage::copy($copy['photo'],$new_path);
+            $create->photo = $new_path;
+            $create->save();
+        }
+
+        //otherdata product
+
+            foreach($relation_data->other_data()->get() as $otherdata){
+
+                OtherData::create([
+                    'product_id'=>$create->id,
+                    'data_key'=> $otherdata->data_key,
+                    'data_value'=> $otherdata->data_value,
+                ]);
+            }
+
+        //$files = FileTbl::where('file_type','product')->where('relation_id',$id)->get();
+
+            foreach($relation_data->files()->get() as $file){
+                $hashname = \Str::random(30);
+                $ext = \File::extension($file->path);
+                $new_path = 'public/products/'.$create->id.'/'.$hashname.'.'.$ext;
+                \Storage::copy($file->path,$new_path);
+                $add = FileTbl::create([
+                    'name' => $file->name,
+                    'size' => $file->size,
+                    'file' => $hashname,
+                    'path' => 'public/products/'.$create->id.'/' .$hashname.'.'.$ext,
+                    'mime_type' => $file->mime_type,
+                    'file_type'=> 'product',
+                    'relation_id' => $create->id,
+                ]);
+            }
+
+
+        return response([
+            'status'=>true,
+            'message'=>trans('admin.product_created'),
+            'id'=>$create->id
+        ],200);
+    }
+    else{
+        return redirect(aurl('/'));
+    }
+    }
+
     public function deleteProduct($id)
     {
         $products = Product::find($id);
-        Storage::delete($products->photo);
+        !is_null($products->photo) && Storage::delete($products->photo);
         up()->delete_files($id);
         $products->delete();
 
