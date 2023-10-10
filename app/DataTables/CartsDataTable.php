@@ -59,10 +59,7 @@ class CartsDataTable extends DataTable
                         'dom'         => 'Blfrtip',
                         'lengthMenu'  => [[10,25,50,100],[10,25,50,trans('admin.all_record')]],
                         'buttons'     =>[
-                            ['text'   => '<i class="fa fa-plus"></i> '.trans('admin.create'),'className'=>'btn btn-info btn-sm','action'=>"function(){
 
-                                window.location.href='".\URL::current()."/create';
-                            }"],
                             ['extend' => 'print','className'=>'btn btn-primary btn-sm','text'=>'<i class="fa fa-print"></i>'],
                             ['extend' => 'csv','className'=>'btn btn-info btn-sm','text'=>'<i class="fa fa-file"></i> '.trans('admin.ex_csv')],
                             ['extend' => 'excel','className'=>'btn btn-success btn-sm','text'=>'<i class="fa fa-file"></i> '.trans('admin.ex_excel')],

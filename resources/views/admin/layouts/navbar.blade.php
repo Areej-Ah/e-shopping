@@ -661,14 +661,6 @@
               <p>{{ trans('admin.carts') }}</p>
             </a>
           </li>
-
-          <li class="nav-item">
-            <a href="{{aurl('carts/create')}}" class="nav-link">
-              <i class="fa fa-plus nav-icon"></i>
-              <p>{{ trans('admin.add') }}</p>
-            </a>
-          </li>
-
         </ul>
       </li>
 
