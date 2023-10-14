@@ -20,51 +20,6 @@ class CartsController extends Controller
     }
 
 
-
-    public function create()
-    {
-      return view('admin.carts.create',['title'=>trans('admin.create')]);
-    }
-
-
-    public function store()
-    {
-        $data = $this->validate(request(),
-        [
-            'name_en' => 'required',
-            'name_ar' => 'required',
-            'logo'    => 'required|'.validate_image(),
-
-        ],[],[
-
-            'name_en' => trans('admin.name_en'),
-            'name_ar' => trans('admin.name_ar'),
-            'logo'    => trans('admin.logo'),
-        ]
-
-        );
-
-        if(request()->hasFile('logo'))
-		{
-			$data['logo']=up()->upload([
-
-			    //	'new_name'    => '',
-				'file'        => 'logo',
-				'path'        => 'public/brands',
-                'upload_type' => 'single',
-                'delete_file' => '',
-			]);
-		}
-
-        Brand::create($data);
-        session()->flash('success',trans('admin.record_added'));
-        return redirect(aurl('brands'));
-
-
-    }
-
-
-
     public function show($id)
     {
 
@@ -91,24 +46,10 @@ class CartsController extends Controller
         'seen' => 'required',
         'status' => 'required',
         'active' => 'required',
-        'products.*.id' => 'required|exists:products,id',
-        'products.*.quantity' => 'required|integer|min:1',
-        'products.*.cost' => 'required|numeric|min:0',
     ]);
 
     // Update the cart with the validated data
-    $cart->update($request->only(['total_price', 'seen', 'status', 'active']));
-
-    // Update the products associated with the cart
-    $productsData = $request->input('products', []);
-    $cart->products()->sync([]);
-    foreach ($productsData as $productData) {
-        $product = Product::findOrFail($productData['id']);
-        $cart->products()->attach($product, [
-            'quantity' => $productData['quantity'],
-            'cost' => $productData['cost'],
-        ]);
-    }
+    $cart->update($request->only(['seen', 'status', 'active']));
 
     // Redirect or return a response
 
@@ -137,14 +78,14 @@ class CartsController extends Controller
             foreach (request('item') as  $id)
              {
                 $cart=Cart::find($id);
-                //Storage::delete($brand->logo);
+
                 $cart->delete();
              }
         }
         else
         {
             $cart=Cart::find(request('item'));
-           // Storage::delete($brand->logo);
+
             $cart->delete();
         }
 
