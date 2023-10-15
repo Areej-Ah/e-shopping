@@ -28,6 +28,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function() {
         Route::resource('brands','BrandsController');
         Route::delete('brands/destroy/all','BrandsController@multi_delete');
 
+        Route::resource('subscriptions','SubscriptionsController');
+        Route::delete('subscriptions/destroy/all','SubscriptionsController@multi_delete');
+
         Route::resource('services','ServicesController');
         Route::delete('services/destroy/all','ServicesController@multi_delete');
 

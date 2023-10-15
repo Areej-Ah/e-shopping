@@ -8,7 +8,7 @@
     <div class="card-header">
       <h3 class="card-title">{{ $title }}</h3>
     </div>
-    <!-- /.card-header -->
+
     <div class="card-body">
     {!! Form::open(['url' => aurl('services'),'files'=>true]) !!}
 
@@ -68,12 +68,7 @@
 
 
     </div>
-    <!-- /.card-body -->
   </div>
-
-
-
-
 
 
 @endsection
@@ -84,8 +79,7 @@
         tabsize: 2,
         height: 100
       });
-    </script>
-  <script>
+
       $('.summernote_description_en').summernote({
         tabsize: 2,
         height: 100

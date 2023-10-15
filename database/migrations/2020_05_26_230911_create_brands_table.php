@@ -17,7 +17,10 @@ class CreateBrandsTable extends Migration
             $table->increments('id');
             $table->string('name_ar');
             $table->string('name_en');
+            $table->longtext('text_en')->nullable();
+            $table->longtext('text_ar')->nullable();
             $table->string('logo')->nullable();
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }

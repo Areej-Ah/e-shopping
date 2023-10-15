@@ -33,6 +33,9 @@ class BrandsController extends Controller
         [
             'name_en' => 'required',
             'name_ar' => 'required',
+            'text_en' => 'nullable',
+            'text_ar' => 'nullable',
+            'active'  => 'required',
             'logo'    => 'required|'.validate_image(),
 
         ],[],[
@@ -47,14 +50,13 @@ class BrandsController extends Controller
         if(request()->hasFile('logo'))
 		{
 			$data['logo']=up()->upload([
-
-			    //	'new_name'    => '',
 				'file'        => 'logo',
 				'path'        => 'public/brands',
                 'upload_type' => 'single',
                 'delete_file' => '',
 			]);
 		}
+
 
         Brand::create($data);
         session()->flash('success',trans('admin.record_added'));
@@ -86,6 +88,9 @@ class BrandsController extends Controller
         [
             'name_en' => 'required',
             'name_ar' => 'required',
+            'text_en' => 'nullable',
+            'text_ar' => 'nullable',
+            'active'  => 'required',
             'logo'    => 'sometimes|nullable|'.validate_image(),
 
         ],[],[

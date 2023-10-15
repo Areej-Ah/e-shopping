@@ -9,6 +9,10 @@ use App\Models\Customer;
 use App\Models\Setting;
 use App\Models\SocialMedia;
 use App\Models\Slider;
+use App\Models\Brand;
+use App\Models\Product; 
+use App\Models\Department;
+use App\Models\Subscription;
 use App\Models\News;
 use App\Models\Photo;
 use App\Models\Video;
@@ -21,15 +25,18 @@ class PagesController extends Controller
     public function home()
     {
         $setting= Setting::first();
-        $services= Service::where('active', '1')->get();
-        $sliders= Slider::where('active', '1')->get();
-        $news= News::where('active', '1')->take(4)->get();
+        $brands= Brand::where('active', '1')->get();
+        $subscriptions= Subscription::where('active', '1')->get();
         $customers= Customer::where('show', '1')->get();
-        $teams= Team::where('active', '1')->get();
         $sliders = Slider::where('active', '1')->get();
         $socialMedia= SocialMedia::where('active', '1')->get();
+        // $news= News::where('active', '1')->take(4)->get();
+        // $services= Service::where('active', '1')->get();
+        // $teams= Team::where('active', '1')->get();
 
-        return view('frontend.home', compact('setting', 'services', 'customers', 'teams','sliders','socialMedia','news'));
+        return view('frontend.home', compact('setting', 'customers',
+                                            'brands', 'sliders', 'socialMedia',
+                                            'subscriptions'));
 
     }
 
@@ -39,7 +46,6 @@ class PagesController extends Controller
         $setting= Setting::first();
         $socialMedia= SocialMedia::where('active', '1')->get();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.about', compact('setting', 'socialMedia', 'services'));
     }
 
@@ -55,12 +61,10 @@ class PagesController extends Controller
 
     public function service($id)
     {
-
         $setting= Setting::first();
         $socialMedia= SocialMedia::where('active', '1')->get();
         $service = Service::find($id);
         $services= Service::where('active', '1')->get();
-
         return view('frontend.service', compact('setting', 'socialMedia', 'service', 'services'));
     }
 
@@ -72,7 +76,6 @@ class PagesController extends Controller
         $news= News::where('active', '1')->get();
         $last= News::where('active', '1')->latest()->first();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.news', compact('setting', 'socialMedia', 'news','last', 'services'));
     }
 
@@ -84,7 +87,6 @@ class PagesController extends Controller
         $new = News::find($id);
         $news= News::where('active', '1')->get();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.new_item', compact('setting', 'socialMedia', 'new', 'news','services'));
     }
 
@@ -94,7 +96,6 @@ class PagesController extends Controller
         $setting= Setting::first();
         $socialMedia= SocialMedia::where('active', '1')->get();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.contact', compact('setting', 'socialMedia', 'services'));
     }
 
@@ -103,7 +104,6 @@ class PagesController extends Controller
         $setting= Setting::first();
         $socialMedia= SocialMedia::all();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.jobs', compact('setting', 'socialMedia', 'services'));
     }
 
@@ -113,7 +113,6 @@ class PagesController extends Controller
         $socialMedia= SocialMedia::where('active', '1')->get();
         $images= Photo::where('active', '1')->get();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.images', compact('setting', 'socialMedia', 'images', 'services'));
     }
 
@@ -123,7 +122,6 @@ class PagesController extends Controller
         $socialMedia= SocialMedia::where('active', '1')->get();
         $videos= Video::where('active', '1')->get();
         $services= Service::where('active', '1')->get();
-
         return view('frontend.videos', compact('setting', 'socialMedia', 'videos', 'services'));
     }
 }

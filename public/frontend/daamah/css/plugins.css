@@ -953,8 +953,12 @@ progress{
     flex:0 0 auto;
     width:100%
 }
-.offset-1{
-    margin-left:8.33333%
+
+@media (min-width: 992px){
+	.offset-1{
+		margin-right:8.33333%
+	}
+	
 }
 .offset-2{
     margin-left:16.66667%

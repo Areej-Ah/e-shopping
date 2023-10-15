@@ -10,11 +10,11 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-    {!! Form::open(['url' => aurl('slider'),'files'=>true]) !!}
+      {!! Form::open(['url' => aurl('slider'),'files'=>true]) !!}
 
         <div class="form-group">
-            {!! Form::label('title_ar', trans('admin.title_ar')) !!}
-            {!! Form::text('title_ar',old('title_ar'),['class'=>'form-control']) !!}
+          {!! Form::label('title_ar', trans('admin.title_ar')) !!}
+          {!! Form::text('title_ar',old('title_ar'),['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -51,18 +51,11 @@
         <br/>
 
 
-         {!! Form::submit(trans('admin.create'),['class' =>'btn btn-primary' ]) !!}
+      {!! Form::submit(trans('admin.create'),['class' =>'btn btn-primary' ]) !!}
 
-    {!! Form::close() !!}
-
+      {!! Form::close() !!}
 
     </div>
-    <!-- /.card-body -->
   </div>
-
-
-
-
-
 
 @endsection

@@ -3,19 +3,16 @@
 @section('content')
 
 
-
 <div class="card">
     <div class="card-header">
       <h3 class="card-title">{{ $title }}</h3>
     </div>
-    <!-- /.card-header -->
     <div class="card-body">
     {!! Form::open(['url' => aurl('news/'.$news->id),'method' => 'put','files'=>true]) !!}
 
-
-      <div class="form-group">
-            {!! Form::label('title_ar', trans('admin.title_ar')) !!}
-            {!! Form::text('title_ar',$news->title_ar,['class'=>'form-control']) !!}
+        <div class="form-group">
+          {!! Form::label('title_ar', trans('admin.title_ar')) !!}
+          {!! Form::text('title_ar',$news->title_ar,['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -23,10 +20,9 @@
           {!! Form::text('title_en',$news->title_en,['class'=>'form-control']) !!}
         </div>
 
-
         <div class="form-group">
-            {!! Form::label('text_ar', trans('admin.text_ar')) !!}
-            {!! Form::textarea('text_ar',$news->text_ar,['class'=>'form-control summernote_text_ar']) !!}
+          {!! Form::label('text_ar', trans('admin.text_ar')) !!}
+          {!! Form::textarea('text_ar',$news->text_ar,['class'=>'form-control summernote_text_ar']) !!}
         </div>
 
         <div class="form-group">
@@ -35,9 +31,9 @@
         </div>
 
         <div class="form-group">
-        {!! Form::label('activation', trans('admin.activation')) !!}
-        {!! Form::select('active', ['1' => trans('admin.active'), '0' => trans('admin.inactive')],$news->active,['class'=>'form-control']) !!}
-       </div>
+          {!! Form::label('activation', trans('admin.activation')) !!}
+          {!! Form::select('active', ['1' => trans('admin.active'), '0' => trans('admin.inactive')],$news->active,['class'=>'form-control']) !!}
+        </div>
 
 
         <div class="form-group">
@@ -75,7 +71,6 @@
 
 
     </div>
-    <!-- /.card-body -->
   </div>
 
 @endsection
@@ -83,15 +78,16 @@
 @section('scripts')
 
     <script>
+
       $('.summernote_text_ar').summernote({
         tabsize: 2,
         height: 100
       });
-    </script>
-  <script>
+
       $('.summernote_text_en').summernote({
         tabsize: 2,
         height: 100
       });
+      
     </script>
 @endsection

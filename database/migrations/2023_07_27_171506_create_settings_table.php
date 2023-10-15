@@ -36,6 +36,12 @@ return new class extends Migration
             $table->longtext('quality_policy_en')->nullable();
             $table->longtext('corporate_mission_ar')->nullable();
             $table->longtext('corporate_mission_en')->nullable();
+            $table->longtext('price_guarantee_ar')->nullable();
+            $table->longtext('price_guarantee_en')->nullable();
+            $table->longtext('quality_assurance_ar')->nullable();
+            $table->longtext('quality_assurance_en')->nullable();
+            $table->longtext('after_sales_service_ar')->nullable();
+            $table->longtext('after_sales_service_en')->nullable();
             $table->longtext('values_ar')->nullable();
             $table->longtext('values_en')->nullable();
             $table->string('location_ar')->nullable();
@@ -44,9 +50,13 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('logo2')->nullable();
             $table->string('video')->nullable();
-            $table->string('slogan_en');
-            $table->string('slogan_ar');
+            $table->string('slogan_en')->nullable();
+            $table->string('slogan_ar')->nullable();
             $table->string('employment_email')->nullable();
+            $table->integer('number_of_head_office')->nullable();
+            $table->integer('number_of_product')->nullable();
+            $table->integer('number_of_client')->nullable();
+            $table->integer('number_of_certificate')->nullable();
             $table->timestamps();
         });
     }

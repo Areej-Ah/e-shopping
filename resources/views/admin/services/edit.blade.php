@@ -8,14 +8,13 @@
     <div class="card-header">
       <h3 class="card-title">{{ $title }}</h3>
     </div>
-    <!-- /.card-header -->
+
     <div class="card-body">
     {!! Form::open(['url' => aurl('services/'.$service->id),'method' => 'put','files'=>true]) !!}
 
-
        <div class="form-group">
-            {!! Form::label('name_ar', trans('admin.name_ar')) !!}
-            {!! Form::text('name_ar',$service->name_ar,['class'=>'form-control']) !!}
+          {!! Form::label('name_ar', trans('admin.name_ar')) !!}
+          {!! Form::text('name_ar',$service->name_ar,['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -25,18 +24,18 @@
 
 
         <div class="form-group">
-            {!! Form::label('description_ar', trans('admin.description_ar')) !!}
-            {!! Form::textarea('description_ar',$service->description_ar,['class'=>'form-control summernote_description_ar']) !!}
+          {!! Form::label('description_ar', trans('admin.description_ar')) !!}
+          {!! Form::textarea('description_ar',$service->description_ar,['class'=>'form-control summernote_description_ar']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('description_en', trans('admin.description_en')) !!}
-            {!! Form::textarea('description_en',$service->description_en,['class'=>'form-control summernote_description_en']) !!}
+          {!! Form::label('description_en', trans('admin.description_en')) !!}
+          {!! Form::textarea('description_en',$service->description_en,['class'=>'form-control summernote_description_en']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('activation', trans('admin.activation')) !!}
-            {!! Form::select('active', ['1' => trans('admin.active'), '0' => trans('admin.inactive')],$service->active,['class'=>'form-control']) !!}
+          {!! Form::label('activation', trans('admin.activation')) !!}
+          {!! Form::select('active', ['1' => trans('admin.active'), '0' => trans('admin.inactive')],$service->active,['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -99,36 +98,28 @@
         </div>
         <br/>
 
-
-
          {!! Form::submit(trans('admin.edit'),['class' =>'btn btn-primary' ]) !!}
 
     {!! Form::close() !!}
 
 
     </div>
-    <!-- /.card-body -->
   </div>
-
-
-
-
-
 
 @endsection
 
 @section('scripts')
-
     <script>
+
       $('.summernote_description_ar').summernote({
         tabsize: 2,
         height: 100
       });
-    </script>
-  <script>
+
       $('.summernote_description_en').summernote({
         tabsize: 2,
         height: 100
       });
+
     </script>
 @endsection

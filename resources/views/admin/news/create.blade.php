@@ -3,18 +3,16 @@
 @section('content')
 
 
-
 <div class="card">
     <div class="card-header">
       <h3 class="card-title">{{ $title }}</h3>
     </div>
-    <!-- /.card-header -->
     <div class="card-body">
     {!! Form::open(['url' => aurl('news'),'files'=>true]) !!}
 
         <div class="form-group">
-            {!! Form::label('title_ar', trans('admin.title_ar')) !!}
-            {!! Form::text('title_ar',old('title_ar'),['class'=>'form-control']) !!}
+          {!! Form::label('title_ar', trans('admin.title_ar')) !!}
+          {!! Form::text('title_ar',old('title_ar'),['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -57,7 +55,6 @@
 
 
     </div>
-    <!-- /.card-body -->
   </div>
 
 @endsection
@@ -65,15 +62,16 @@
 
 @section('scripts')
     <script>
+
       $('.summernote_text_ar').summernote({
         tabsize: 2,
         height: 100
       });
-    </script>
-  <script>
+
       $('.summernote_text_en').summernote({
         tabsize: 2,
         height: 100
       });
+      
     </script>
 @endsection

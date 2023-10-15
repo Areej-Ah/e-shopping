@@ -37,6 +37,12 @@ class Setting extends Model
         'quality_policy_en',
         'corporate_mission_ar',
         'corporate_mission_en',
+        'price_guarantee_ar',
+        'price_guarantee_en',
+        'quality_assurance_ar',
+        'quality_assurance_en',
+        'after_sales_service_ar',
+        'after_sales_service_en',
         'phone',
         'mobile',
         'logo2',
@@ -44,10 +50,9 @@ class Setting extends Model
         'employment_email',
         'slogan_en',
         'slogan_ar',
-        'number_of_marketing_strategy',
-        'number_of_new_ideas',
-        'number_of_done_projects',
-        'number_of_happy_customers',
-
+        'number_of_head_office',
+        'number_of_product',
+        'number_of_client',
+        'number_of_certificate',
 	];
 }

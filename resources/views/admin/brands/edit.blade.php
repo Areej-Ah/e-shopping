@@ -2,20 +2,18 @@
 
 @section('content')
 
-
-
 <div class="card">
     <div class="card-header">
       <h3 class="card-title">{{ $title }}</h3>
     </div>
-    <!-- /.card-header -->
+
     <div class="card-body">
     {!! Form::open(['url' => aurl('brands/'.$brand->id),'method' => 'put','files'=>true]) !!}
 
 
       <div class="form-group">
-            {!! Form::label('name_ar', trans('admin.name_ar')) !!}
-            {!! Form::text('name_ar',$brand->name_ar,['class'=>'form-control']) !!}
+          {!! Form::label('name_ar', trans('admin.name_ar')) !!}
+          {!! Form::text('name_ar',$brand->name_ar,['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -23,7 +21,21 @@
           {!! Form::text('name_en',$brand->name_en,['class'=>'form-control']) !!}
         </div>
 
+        <div class="form-group">
+          {!! Form::label('text_ar', trans('admin.text_ar')) !!}
+          {!! Form::textarea('text_ar',$brand->text_ar,['class'=>'form-control summernote_text_ar']) !!}
+        </div>
 
+        <div class="form-group">
+          {!! Form::label('text_en', trans('admin.text_en')) !!}
+          {!! Form::textarea('text_en',$brand->text_en,['class'=>'form-control summernote_text_en']) !!}
+        </div>
+
+
+        <div class="form-group">
+          {!! Form::label('activation', trans('admin.activation')) !!}
+          {!! Form::select('active', ['1' => trans('admin.active'), '0' => trans('admin.inactive')],$brand->active,['class'=>'form-control']) !!}
+        </div>
 
         <div class="form-group">
           <label for="exampleInputFile">{{ trans('admin.logo') }}</label>
@@ -52,20 +64,30 @@
         </div>
         <br/>
 
-
-
          {!! Form::submit(trans('admin.edit'),['class' =>'btn btn-primary' ]) !!}
 
     {!! Form::close() !!}
 
 
     </div>
-    <!-- /.card-body -->
   </div>
 
 
+@endsection
 
 
+@section('scripts')
+    <script>
+      
+      $('.summernote_text_ar').summernote({
+        tabsize: 2,
+        height: 100
+      });
 
+      $('.summernote_text_en').summernote({
+        tabsize: 2,
+        height: 100
+      });
 
+    </script>
 @endsection

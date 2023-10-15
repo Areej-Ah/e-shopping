@@ -17,7 +17,6 @@ class Service extends Model
 		'icon',
         'description_ar',
         'description_en'
-
 	];
     public function files(): HasMany
     {

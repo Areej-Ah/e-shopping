@@ -74,7 +74,7 @@
           {!! Form::textarea('description_en',old('description_en'),['class'=>'form-control summernote_description_en']) !!}
         </div>
 
-
+        <br/>
         <div class="form-group">
           {!! Form::label('keyword', trans('admin.keyword')) !!}
           {!! Form::textarea('keyword',old('keyword'),['class'=>'form-control']) !!}
@@ -86,20 +86,17 @@
           {!! Form::select('active', ['1' => trans('admin.active'), '0' => trans('admin.inactive')],old('activation'),['class'=>'form-control']) !!}
         </div>
 
-
-
-
-
+        <br/>
         <div class="form-group">
-          <label for="exampleInputFile">{{ trans('admin.icon') }}</label>
+          <label for="exampleInputFile">{{ trans('admin.image') }}</label>
           <div class="input-group">
             <div class="custom-file">
-              {!! Form::label('icon',trans('admin.icon'),['class'=>'custom-file-label']) !!}
+              {!! Form::label('icon',trans('admin.image'),['class'=>'custom-file-label']) !!}
               {!! Form::file('icon',['class'=>'custom-file-input']) !!}
-
             </div>
           </div>
         </div>
+        <br/>
 
 
          {!! Form::submit(trans('admin.create'),['class' =>'btn btn-primary' ]) !!}
@@ -108,27 +105,23 @@
 
 
     </div>
-    <!-- /.card-body -->
   </div>
-
-
-
-
 
 
 @endsection
 
 @section('scripts')
     <script>
+
       $('.summernote_description_ar').summernote({
         tabsize: 2,
         height: 100
       });
-    </script>
-  <script>
+
       $('.summernote_description_en').summernote({
         tabsize: 2,
         height: 100
       });
+      
     </script>
 @endsection
