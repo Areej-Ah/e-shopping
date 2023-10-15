@@ -11,7 +11,7 @@
 				<div class="social-icons social-icons-colored-hover">
 					<ul>
 						@foreach($socialMedia as $item)
-							<li class="social-{{$item->icon}}"><a href="{{ $item->link }}"><i class="fab fa-{{$item->icon}}"></i></a></li>
+							<li class="social-{{ $item->icon }}"><a href="{{ $item->link }}"><i class="fab fa-{{ $item->icon }}"></i></a></li>
 						@endforeach
 					</ul>
 				</div>
@@ -68,40 +68,42 @@
 							<li><a href="{{ url ('/about') }}">{!! trans('admin.about') !!}</a></li>
 							<li class="dropdown"><a href="#">{!! trans('admin.products') !!}</a>
 								<ul class="dropdown-menu">
-									<li class="dropdown-submenu"><a href="products.html">التصنيف الأول</a>
-										<ul class="dropdown-menu">
-											<li class="dropdown-submenu"><a href="products.html">التصنيف الثاني</a>
+									@foreach($departments as $department)
+										<li class="{{ empty($department['children']) ? '' : 'dropdown-submenu' }}">
+											@if(empty($department['children']))
+												<a href="/products/{{ $department['id']}}">{!! $department['dep_name_'.session('lang')]  !!}</a>
+											@else
+												<a href="#">{!! $department['dep_name_'.session('lang')]  !!}</a>
 												<ul class="dropdown-menu">
-													<li><a href="products.html">التصنيف الثالث</a></li>
-													
+													@foreach($department['children'] as $sub_department)
+														<li class="{{ empty($sub_department['children']) ? '' : 'dropdown-submenu' }}">
+															@if(empty($sub_department['children']))
+																<a href="/products/{{ $sub_department['id']}}">{!! $sub_department['dep_name_'.session('lang')]  !!}</a>
+															@else
+																<a href="#">{!! $sub_department['dep_name_'.session('lang')]  !!}</a>
+																<ul class="dropdown-menu">
+																	@foreach($sub_department['children'] as $sub_sub_department)
+																		<li><a href="/products/{{ $sub_sub_department['id']}}">{!! $sub_sub_department['dep_name_'.session('lang')]  !!}</a></li>
+																	@endforeach	
+																</ul>
+															@endif
+														</li>
+													@endforeach
 												</ul>
-											</li>
-											
-										</ul>
-									</li>
-									<li class="dropdown-submenu"><a href="products.html">التصنيف الأول</a>
-										<ul class="dropdown-menu">
-											<li class="dropdown-submenu"><a href="products.html">التصنيف الثاني</a>
-												<ul class="dropdown-menu">
-													<li><a href="products.html">التصنيف الثالث</a></li>
-													
-												</ul>
-											</li>
-											
-										</ul>
-									</li>
+											@endif
+										</li>
+									@endforeach
 								</ul>
 							</li>
 							<li><a href="{{ url ('/brands') }}">{!! trans('admin.brands') !!}</a></li>
 							<li><a href="{{ url ('/projects') }}">{!! trans('admin.projects') !!}</a></li>
 							<li><a href="{{ url ('/jobs') }}">{!! trans('admin.jobs') !!}</a></li>
 							<li><a href="{{ url ('/contact') }}">{!! trans('admin.contact_us') !!}</a></li>
-
 						</ul>
 					</nav>
 				</div>
 			</div>
-		   
+			
 		</div>
 	</div>
 </header>

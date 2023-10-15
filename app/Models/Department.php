@@ -22,7 +22,32 @@ class Department extends Model
 
 
 
-    public function parents() {
-        return $this->hasMany(Department::class,'id', 'parent');
+    public function children()
+    {
+        return $this->hasMany(Department::class, 'parent');
+    }
+
+    public function departmentHierarchy()
+    {
+        $departments = $this->with('children')
+        ->whereNull('parent')
+        ->where('active', 1)
+        ->get();
+
+    $formatDepartments = function ($departments) use (&$formatDepartments) {
+        $formattedDepartments = [];
+
+        foreach ($departments as $department) {
+            $formattedDepartment = $department->toArray();
+            $children = $formatDepartments($department->children()->where('active', 1)->get());
+            $formattedDepartment['children'] = $children;
+            $formattedDepartments[] = $formattedDepartment;
+        }
+
+        return $formattedDepartments;
+    };
+
+    return $formatDepartments($departments);
+
     }
 }

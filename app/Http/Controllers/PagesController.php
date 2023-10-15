@@ -30,13 +30,17 @@ class PagesController extends Controller
         $customers= Customer::where('show', '1')->get();
         $sliders = Slider::where('active', '1')->get();
         $socialMedia= SocialMedia::where('active', '1')->get();
+
+        $department = new Department;
+        $departments = collect($department->departmentHierarchy())->where('active', '1');
+        // dd($departments);
         // $news= News::where('active', '1')->take(4)->get();
         // $services= Service::where('active', '1')->get();
         // $teams= Team::where('active', '1')->get();
 
         return view('frontend.home', compact('setting', 'customers',
                                             'brands', 'sliders', 'socialMedia',
-                                            'subscriptions'));
+                                            'subscriptions', 'departments'));
 
     }
 
